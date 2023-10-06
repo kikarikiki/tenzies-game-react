@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #F6E9E0;
+}
+
+.wrapper {
+  margin: 20px;
+  background-color: #0B2434;
+  padding: 16px;
+}
+
+main {
+  border-radius: 6px;
+  background-color: aliceblue;
+  height: 450px;
+
+}
