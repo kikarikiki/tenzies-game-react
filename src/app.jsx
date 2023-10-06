@@ -1,4 +1,5 @@
 import React from "react"
+import Die from "./components/Die"
 
 export function App() {
 
@@ -6,7 +7,18 @@ export function App() {
     <>
       <div className="wrapper">
         <main>
-
+          <div className="dice-container">
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+            <Die value="1" />
+          </div>
         </main>
       </div>
     </>
