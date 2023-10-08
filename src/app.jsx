@@ -18,7 +18,13 @@ export function App() {
     // State that holds values/informations of Dice
     const [valuesDice, setValueDice] = React.useState(allNewDice)
     // generate Die elements + their value & render to screen
-    const valueDice = valuesDice.map(num => <Die value={num.value} key={num.id} />)
+    const valueDice = valuesDice.map(num => (
+      <Die
+        value = {num.value}
+        key = {num.id}
+        isHeld = {num.isHeld}
+      />
+    ))
 
     // Handle Roll Dice
     function rollDice() {
@@ -30,7 +36,7 @@ export function App() {
       <div className="wrapper">
         <main>
           <div className="dice-container">
-            {valueDice}
+            {valueDice }
           </div>
           <button type="button" className="btn" onClick={rollDice}>Roll</button>
         </main>
