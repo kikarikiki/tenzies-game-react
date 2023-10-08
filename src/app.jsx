@@ -23,12 +23,18 @@ export function App() {
         value = {num.value}
         key = {num.id}
         isHeld = {num.isHeld}
+        holdDice={() => holdDice(num.id)}
       />
     ))
 
     // Handle Roll Dice
     function rollDice() {
       setValueDice(allNewDice)
+    }
+
+    // Handle Hold Dice
+    function holdDice(id) {
+      console.log(id)
     }
 
   return (
