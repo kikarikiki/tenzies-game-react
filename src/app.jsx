@@ -1,11 +1,31 @@
 import React from "react"
 import Die from "./components/Die"
 import {nanoid} from "nanoid"
+import Confetti from "react-confetti"
 
 export function App() {
 
   // State that holds values/informations of Dice
   const [valuesDice, setValueDice] = React.useState(allNewDice())
+
+  // State that represents whether user won yet
+  const [tenzies = false, setTenzies] = React.useState()
+
+  // To keep internal States (valuesDice, tenzies) in sync
+  React.useEffect(() => {
+      // Check dice array for winning conditions
+      const allHeld = valuesDice.every(die => die.isHeld)
+      const allSameValue = valuesDice.every(die => die.value === valuesDice[0].value)
+
+      if (allHeld && allSameValue) {
+        setTenzies(true)
+      }
+
+      // Clear up
+      return () => setTenzies(false)
+
+  }, [valuesDice])
+
 
   // Helper Function
   function generateNewDie() {
@@ -58,6 +78,7 @@ export function App() {
 
   return (
     <>
+      {tenzies && <Confetti />}
       <div className="wrapper">
         <main>
           <h1 className="title">Tenzies</h1>
@@ -65,7 +86,7 @@ export function App() {
           <div className="dice-container">
             {valueDice }
           </div>
-          <button type="button" className="btn" onClick={rollDice}>Roll</button>
+          <button type="button" className="btn" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
         </main>
       </div>
     </>
