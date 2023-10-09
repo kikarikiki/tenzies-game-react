@@ -48,11 +48,16 @@ export function App() {
 
     // Handle Roll Dice
     function rollDice() {
-      setValueDice(oldDice => oldDice.map(die => {
-        return die.isHeld ?
-            die :
-            generateNewDie()
-      }))
+      if(!tenzies) {
+        setValueDice(oldDice => oldDice.map(die => {
+          return die.isHeld ?
+              die :
+              generateNewDie()
+        }))
+      } else {
+          setTenzies(false)
+          setValueDice(allNewDice)
+      }
     }
 
   // generate Die elements + their value & render to screen
