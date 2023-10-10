@@ -40,7 +40,10 @@ main {
 }
 
 .track {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  width: 330px;
+
 }
 
 .dice-container {

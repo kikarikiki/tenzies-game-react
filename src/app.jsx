@@ -1,5 +1,6 @@
 import React from "react"
 import Die from "./components/Die"
+import Timer from "./components/Timer"
 import {nanoid} from "nanoid"
 import Confetti from "react-confetti"
 
@@ -96,10 +97,10 @@ export function App() {
         <main>
           <h1 className="title">Tenzies</h1>
           <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-          <ul className="track">
-            <li className="roll-round">Roll {rolls}</li>
-            <li className="time">time</li>
-          </ul>
+          <div className="track">
+            <div className="roll-round">Roll {rolls}</div>
+            <div className="time"><Timer isWon = {tenzies} /></div>
+          </div>
           <div className="dice-container">
             {valueDice}
           </div>
