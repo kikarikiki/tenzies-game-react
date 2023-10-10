@@ -39,6 +39,10 @@ main {
   text-align: center;
 }
 
+.track {
+  display: inline-block;
+}
+
 .dice-container {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
@@ -103,6 +107,7 @@ main {
 }
 
 .btn {
+  margin-top: 20px;
   height: 50px;
   width: 150px;
   border: none;
