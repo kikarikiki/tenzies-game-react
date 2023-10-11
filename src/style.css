@@ -40,10 +40,21 @@ main {
 }
 
 .track {
+  width: 330px;
   display: flex;
   justify-content: space-between;
-  width: 330px;
+}
 
+.timer {
+  margin: 0;
+  display: grid;
+  font-variant-numeric: tabular-nums;
+  grid-auto-flow: column;
+  inline-size: min-content;
+}
+
+.timer li {
+  list-style: none;
 }
 
 .dice-container {

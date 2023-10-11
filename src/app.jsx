@@ -27,7 +27,7 @@ export function App() {
 
   }, [valuesDice])
 
-  // State Roll-rounds
+  // State Roll-count
   const [rolls, setRolls] = React.useState(1)
 
 
@@ -58,12 +58,14 @@ export function App() {
               die :
               generateNewDie()
         }))
+
+        // Incrementing roll-round
+        setRolls(rolls + 1)
       } else {
           setTenzies(false)
           setValueDice(allNewDice)
+          setRolls(1)
       }
-      // Incrementing roll-round
-      setRolls(rolls + 1)
     }
 
   // generate Die elements + their value & render to screen
@@ -98,7 +100,7 @@ export function App() {
           <h1 className="title">Tenzies</h1>
           <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className="track">
-            <div className="roll-round">Roll {rolls}</div>
+            <div className="roll-count">Roll {rolls}</div>
             <div className="time"><Timer isWon = {tenzies} /></div>
           </div>
           <div className="dice-container">
