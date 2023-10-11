@@ -3,6 +3,8 @@ import Die from "./components/Die"
 import Timer from "./components/Timer"
 import {nanoid} from "nanoid"
 import Confetti from "react-confetti"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDice } from "@fortawesome/free-solid-svg-icons";
 
 export function App() {
 
@@ -60,11 +62,11 @@ export function App() {
         }))
 
         // Incrementing roll-round
-        setRolls(rolls + 1)
+        setRolls(rolls => rolls + 1)
       } else {
-          setTenzies(false)
-          setValueDice(allNewDice)
-          setRolls(1)
+        setRolls(0)
+        setTenzies(false)
+        setValueDice(allNewDice)
       }
     }
 
@@ -95,20 +97,22 @@ export function App() {
   return (
     <>
       {tenzies && <Confetti />}
-      <div className="wrapper">
-        <main>
-          <h1 className="title">Tenzies</h1>
-          <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-          <div className="track">
-            <div className="roll-count">Roll {rolls}</div>
-            <div className="time"><Timer isWon = {tenzies} /></div>
-          </div>
-          <div className="dice-container">
-            {valueDice}
-          </div>
-          <button type="button" className="btn" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
-        </main>
-      </div>
+      <main>
+        <h1 className="title">Tenzies</h1>
+        <p className="instructions">Roll until all dice are the same.<br/>
+        Click each die to freeze it at its current value between rolls.</p>
+        <div className="track">
+          <div className="time"><Timer isWon={tenzies} /></div>
+          <ul className="track-item">
+            <li>{rolls}</li>
+            <li style={{margin: "0 0 0 5px"}}><i><FontAwesomeIcon icon={faDice} /></i></li>
+          </ul>
+        </div>
+        <div className="dice-container">
+          {valueDice}
+        </div>
+        <button type="button" className="btn" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
+      </main>
     </>
   )
 }

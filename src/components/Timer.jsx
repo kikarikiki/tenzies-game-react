@@ -1,4 +1,6 @@
 import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStopwatch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Timer(props) {
 
@@ -6,11 +8,12 @@ export default function Timer(props) {
   const [minutes, setMinutes] = React.useState(0);
   const formatTime = time => (time < 10 ? `0${time}` : time)
 
-  const timer = React.useEffect(() => {
+  React.useEffect(() => {
+    let interval = null
 
     // Run times as long tenizies is not won
     if (!props.isWon) {
-      const intervalId = setInterval(() => {
+      interval = setInterval(() => {
         // Increment seconds
         setSeconds(prevSeconds => (prevSeconds === 59 ? 0 : prevSeconds + 1));
 
@@ -21,15 +24,17 @@ export default function Timer(props) {
       }, 1000);
 
       // Cleanup interval on component unmount
-      return () => clearInterval(intervalId);
-    } else {
-      return seconds
+    } else if (props.isWon && (minutes !== 0 && seconds !== 0)) {
+      clearInterval(interval)
     }
-  }, [props.isWon, seconds]); // Re-run effect whenever seconds change
+    return () => clearInterval(interval)
+  }, [props.isWon, minutes, seconds]); // Re-run effect whenever seconds change
+
 
   return (
     <>
-      <ul className="timer">
+      <ul className="track-item timer">
+        <li><i><FontAwesomeIcon icon={faStopwatch} /></i></li>
         <li>{minutes}</li>
         <li>:</li>
         <li>{formatTime(seconds)}</li>
